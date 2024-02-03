@@ -55,7 +55,7 @@ public class PrefabCollisionProcessor : MonoBehaviour
             }
 
             // Make pole throwable again
-            GameObject.Find("Player").GetComponent<PoleThrower>().resetThrowableTrigger();
+            GameObject.Find("Player").GetComponent<PoleThrower>().ResetThrowableTrigger();
 
             // Reset stop checks.
             checkForStop = false;

@@ -11,7 +11,7 @@ public class PoleStopChecker : MonoBehaviour
 
         if (rb.IsSleeping())
         {
-            GameObject.Find("Player").GetComponent<PoleThrower>().resetThrowableTrigger();
+            GameObject.Find("Player").GetComponent<PoleThrower>().ResetThrowableTrigger();
             Destroy(transform.gameObject);
         }
     }

@@ -1,39 +1,32 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
     public float moveSpeed;
-
     public float groundDrag;
-
     public float jumpForce;
     public float jumpCooldown;
     public float airMultiplier;
-    bool canJump;
+    private bool canJump;
 
     [HideInInspector] public float walkSpeed;
     [HideInInspector] public float sprintSpeed;
 
-    [Header("Keybinds")]
-    public KeyCode jumpKey = KeyCode.Space;
-
     [Header("Ground Check")]
     public float playerHeight;
     public LayerMask whatIsGround;
-    bool grounded;
+    private bool grounded;
 
+    [Header("Orientation")]
     public Transform orientation;
 
-    float horizontalInput;
-    float verticalInput;
-
-    Vector3 moveDirection;
-
-    Rigidbody rb;
+    private Vector2 moveAmount;
+    private Rigidbody rb;
 
     //[HideInInspector] public TextMeshProUGUI text_speed;
 
@@ -51,8 +44,8 @@ public class PlayerMovement : MonoBehaviour
         // ground check
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
 
-        MyInput();
-        PlayerSpeedHandler();
+        // handle speed
+        SpeedHandler();
 
         // handle drag
         if (grounded)
@@ -63,40 +56,25 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        PlayerMove();
+        Move();
     }
 
-    private void MyInput()
+    // movement events (subscribed to in inspector)
+    public void OnMove(InputAction.CallbackContext context)
     {
-        horizontalInput = Input.GetAxisRaw("Horizontal");
-        verticalInput = Input.GetAxisRaw("Vertical");
-
+        // read move input
+        moveAmount = context.ReadValue<Vector2>();
+    }
+    public void OnJump(InputAction.CallbackContext context)
+    {
         // when to jump
-        if (Input.GetKey(jumpKey) && canJump && grounded)
+        if (canJump && grounded)
         {
-            canJump = false;
-
             Jump();
-
-            Invoke(nameof(JumpRestart), jumpCooldown);
         }
     }
 
-    private void PlayerMove()
-    {
-        // calculate movement direction
-        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
-
-        // on ground
-        if (grounded)
-            rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
-
-        // in air
-        else if (!grounded)
-            rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
-    }
-
-    private void PlayerSpeedHandler()
+    private void SpeedHandler()
     {
         Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
@@ -110,13 +88,31 @@ public class PlayerMovement : MonoBehaviour
         //text_speed.SetText("Velocity: " + flatVel.magnitude);
     }
 
+    // actual movement
+    private void Move()
+    {
+        // calculate movement direction
+        Vector3 moveDirection = orientation.forward * moveAmount.y + orientation.right * moveAmount.x;
+
+        // on ground
+        if (grounded)
+            rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+
+        // in air
+        else if (!grounded)
+            rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
+    }
     private void Jump()
     {
+        canJump = false;
+
         // reset y velocity
         Debug.Log("Jumping");
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+
+        Invoke(nameof(JumpRestart), jumpCooldown);
     }
     private void JumpRestart()
     {

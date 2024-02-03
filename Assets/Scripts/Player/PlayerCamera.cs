@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class PlayerCamera : MonoBehaviour
@@ -15,6 +17,8 @@ public class PlayerCamera : MonoBehaviour
     public Text notificationText;
 
     public Transform shootingLookAt;
+
+    private Vector2 input;
 
     public enum CameraStyle
     {
@@ -36,20 +40,9 @@ public class PlayerCamera : MonoBehaviour
         Vector3 viewDirection = player.position - new Vector3(transform.position.x, player.position.y, transform.position.z);
         orientation.forward = viewDirection.normalized;
 
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            currentStyle = (currentStyle == CameraStyle.Exploration) ? CameraStyle.Shooting : CameraStyle.Exploration;
-            StartCoroutine(sendNotification("Camera style: " + currentStyle.ToString(), 3));
-        }
-
-
         if (currentStyle == CameraStyle.Exploration)
         {
-            // vertical and horizontal inputs
-            float hInput = Input.GetAxis("Horizontal");
-            float vInput = Input.GetAxis("Vertical");
-
-            Vector3 inputDirection = orientation.forward * vInput + orientation.right * hInput;
+            Vector3 inputDirection = orientation.forward * input.y + orientation.right * input.x;
 
             // smoothen the movement
             if (inputDirection != Vector3.zero)
@@ -57,22 +50,30 @@ public class PlayerCamera : MonoBehaviour
         }
         else if (currentStyle == CameraStyle.Shooting)
         {
-            // vertical and horizontal inputs
-            float hInput = Input.GetAxis("Horizontal");
-            float vInput = Input.GetAxis("Vertical");
+            Vector3 directionToShootLookAt = shootingLookAt.position - new Vector3(transform.position.x, shootingLookAt.position.y, transform.position.z);
+            orientation.forward = directionToShootLookAt.normalized;
 
-            Vector3 directionToShootLokAt = shootingLookAt.position - new Vector3(transform.position.x, shootingLookAt.position.y, transform.position.z);
-            orientation.forward = directionToShootLokAt.normalized;
-
-            playerObject.forward = directionToShootLokAt.normalized;
+            playerObject.forward = directionToShootLookAt.normalized;
         }
 
     }
 
-    IEnumerator sendNotification(string text, int timeout)
+    // input events (subscribed to in inspector)
+    public void OnCameraChange(InputAction.CallbackContext context)
+    {
+        currentStyle = (currentStyle == CameraStyle.Exploration) ? CameraStyle.Shooting : CameraStyle.Exploration;
+        StartCoroutine(SendNotification("Camera style: " + currentStyle.ToString(), 3));
+    }
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        // read move input
+        input = context.ReadValue<Vector2>();
+    }
+
+    IEnumerator SendNotification(string text, int timeout)
     {
         notificationText.text = text;
         yield return new WaitForSeconds(timeout);
         notificationText.text = "";
     }
-}   
+}
