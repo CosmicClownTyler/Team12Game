@@ -6,12 +6,14 @@ using System.Diagnostics;
 
 public class GameLogic : MonoBehaviour
 {
+    [Header("Gorod Prefabs")]
+    public GameObject[] GorodPrefabsArray;
+
     public const string MovementConstraintInvisibleWallTag = "MovementConstraint";
     public const string GameAreaObjectName = "GameLogicArea";
     public const string GameAreaTag = "GameContactArea";
     public const string UntaggedAreaTag = "Untagged";
     public const string ThrowingPoleTag = "Pole";
-
 
     // Data:
     private int totalThrows;
@@ -39,7 +41,8 @@ public class GameLogic : MonoBehaviour
         }
 
 
-        var goPrefab = GetPrefabByTag("GO" + currentObjectIndex);
+        //var goPrefab = GetPrefabByTag("GO" + currentObjectIndex);
+        var goPrefab = GetPrefabByArray(currentObjectIndex);
         if (goPrefab != null)
         {
             GameObject prefab = Instantiate(goPrefab, transform.position, transform.rotation);
@@ -115,7 +118,13 @@ public class GameLogic : MonoBehaviour
 
     GameObject GetPrefabByTag(string name)
     {
-        GameObject go = Resources.Load<GameObject>("Prefabs/" + name);
+        GameObject go = Resources.Load<GameObject>("Prefabs/Objects/Gorod Cities/" + name);
+
+        return go;
+    }
+    GameObject GetPrefabByArray(int index)
+    {
+        GameObject go = GorodPrefabsArray[index];
 
         return go;
     }
