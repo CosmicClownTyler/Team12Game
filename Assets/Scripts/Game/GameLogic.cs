@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.UI;
 using System.Diagnostics;
 
 public class GameLogic : MonoBehaviour
@@ -16,6 +17,9 @@ public class GameLogic : MonoBehaviour
     public const string ThrowingPoleTag = "Pole";
 
     // Data:
+    public Text CurrentGameObject;
+    public GameObject playerObject;
+
     private int totalThrows;
     private GameObject currentObject;
     private int currentObjectIndex;
@@ -54,6 +58,8 @@ public class GameLogic : MonoBehaviour
         {
             UnityEngine.Debug.Log("Can't find the right prefab under number " + currentObjectIndex);
         }
+
+        CurrentGameObject.text = "Current Figure: #" + currentObjectIndex;
     }
 
     public void movePlayerFurther()
@@ -66,9 +72,8 @@ public class GameLogic : MonoBehaviour
             triggerCollisionContrains();
 
             UnityEngine.Debug.Log("Moving further");
-            Vector3 move = new Vector3(0, 0, -26f);
-
-            // TODO: move player closer (as per game rules)
+            Vector3 move = new Vector3(0, 0, 10f);
+            playerObject.transform.position += move;
 
             playerBack = false;
             playerForward = true;
@@ -87,9 +92,8 @@ public class GameLogic : MonoBehaviour
             triggerCollisionContrains();
 
             UnityEngine.Debug.Log("Moving back");
-            Vector3 move = new Vector3(0, 0, 26f);
-
-            // TODO: move player further away (as per game rules)
+            Vector3 move = new Vector3(0, 0, -10f);
+            playerObject.transform.position += move;
 
             playerBack = true;
             playerForward = false;

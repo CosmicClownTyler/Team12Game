@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
 public class PoleThrower : MonoBehaviour
@@ -13,6 +14,8 @@ public class PoleThrower : MonoBehaviour
     public GameObject polePrefab;
     public GameObject gameLogic;
     public Transform orientation;
+    public Text strenghtText;
+    public Text throwsText;
 
     private bool startedThrow = false;
     private bool throwing = false;
@@ -58,6 +61,8 @@ public class PoleThrower : MonoBehaviour
         {
             throwForceDirectionUp = true;
         }
+
+        strenghtText.text =  "Throw strenght: " + throwForce;
     }
     // Apply the throw force and insantiate a new pole
     private void ThrowPole()
@@ -111,10 +116,12 @@ public class PoleThrower : MonoBehaviour
         if (context.phase == InputActionPhase.Canceled)
         {
             throwing = false;
+            throwsText.text = "Total Throws: " + gameLogic.GetComponent<GameLogic>().getTotalThrows();
+            strenghtText.text = "Throw strenght: N/A";
         }
         
         // When the mouse button is held down for at least the set time (throw is started)
-        if (context.phase == InputActionPhase.Performed && throwableAgain)
+        if (context.phase == InputActionPhase.Performed/* &&  IsThrowable() */)
         {
             startedThrow = true;
             throwing = true;
