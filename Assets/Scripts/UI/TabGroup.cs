@@ -23,10 +23,10 @@ public class TabGroup : MonoBehaviour
         tabs.Add(tab);
         DeactivateTab(tab);
 
-        // Set the active tab
+        // Set the active default tab
         if (activeTab == null && tab.isDefaultTab)
         {
-            ActivateTab(tab);
+            ActivateDefaultTab(tab);
         }
         // Show a warning that more than one tab is marked as default
         else if (tab.isDefaultTab)
@@ -45,7 +45,7 @@ public class TabGroup : MonoBehaviour
         }
 
         // Deactivate the currently active tab if it exists
-        if (activeTab!= null)
+        if (activeTab != null)
         {
             DeactivateTab(activeTab);
         }
@@ -54,22 +54,22 @@ public class TabGroup : MonoBehaviour
         ActivateTab(tab);
     }
 
+    // Activate all child objects for this tab (as default)
+    private void ActivateDefaultTab(Tab tab)
+    {
+        activeTab = tab;
+        tab.ActivateDefaultTab();
+    }
     // Activate all child objects for this tab
     private void ActivateTab(Tab tab)
     {
-        foreach (RectTransform rt in tab.GetComponentInChildren<RectTransform>())
-        {
-            rt.gameObject.SetActive(true);
-            activeTab = tab;
-        }
+        activeTab = tab;
+        tab.ActivateTab();
     }
 
     // Deactivate all child objects for this tab
     private void DeactivateTab(Tab tab)
     {
-        foreach (RectTransform rt in tab.GetComponentInChildren<RectTransform>())
-        {
-            rt.gameObject.SetActive(false);
-        }
+        tab.DeactivateTab();
     }
 }
