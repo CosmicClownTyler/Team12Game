@@ -11,7 +11,6 @@ public class PlaySoundOnClick : MonoBehaviour, IPointerUpHandler, IPointerExitHa
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        Debug.Log(eventData.button);
         if (eventData.button == PointerEventData.InputButton.Left)
         {
             validClick = true;
