@@ -79,6 +79,8 @@ public class PoleThrower : MonoBehaviour
         rb.AddForce(orientation.transform.forward * throwForce, ForceMode.VelocityChange);
         rb.AddTorque(Vector3.down * 10000.0f);
 
+        Destroy(pole, 5f);
+
         ResetAfterThrow();
     }
     // Reset back
