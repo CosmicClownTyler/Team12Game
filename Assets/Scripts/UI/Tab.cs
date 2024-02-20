@@ -19,28 +19,33 @@ public class Tab : MonoBehaviour
     {
         tabButton.SetDefaultActiveColor();
 
-        foreach (RectTransform rt in GetComponentInChildren<RectTransform>())
-        {
-            rt.gameObject.SetActive(true);
-        }
+        SetActiveChildren(true);
     }
     public void ActivateTab()
     {
         tabButton.SetActiveColor(true);
 
-        foreach (RectTransform rt in GetComponentInChildren<RectTransform>())
-        {
-            rt.gameObject.SetActive(true);
-        }
+        SetActiveChildren(true);
     }
 
     public void DeactivateTab()
     {
         tabButton.SetActiveColor(false);
 
-        foreach (RectTransform rt in GetComponentInChildren<RectTransform>())
+        SetActiveChildren(false);
+    }
+
+    // Activate or deactivate all children recursively
+    private void SetActiveChildren(bool state)
+    {
+        SetActiveChildren(gameObject.GetComponent<RectTransform>(), state);
+    }
+    private void SetActiveChildren(RectTransform rectTransform, bool state)
+    {
+        rectTransform.gameObject.SetActive(state);
+        foreach (RectTransform rt in rectTransform.GetComponentInChildren<RectTransform>())
         {
-            rt.gameObject.SetActive(false);
+            SetActiveChildren(rt, state);
         }
     }
 }
