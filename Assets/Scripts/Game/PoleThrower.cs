@@ -91,6 +91,7 @@ public class PoleThrower : MonoBehaviour
         {
             UnityEngine.Debug.LogWarning("Throw sound clip not assigned.");
         }
+        Destroy(pole, 5f);
 
         ResetAfterThrow();
     }

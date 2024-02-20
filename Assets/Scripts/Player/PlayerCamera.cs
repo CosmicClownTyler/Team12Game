@@ -62,7 +62,7 @@ public class PlayerCamera : MonoBehaviour
     public void OnCameraChange(InputAction.CallbackContext context)
     {
         currentStyle = (currentStyle == CameraStyle.Exploration) ? CameraStyle.Shooting : CameraStyle.Exploration;
-        StartCoroutine(SendNotification("Camera style: " + currentStyle.ToString(), 3));
+        StartCoroutine(SendNotification(notificationText,"Camera style: " + currentStyle.ToString(), 3));
     }
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -70,10 +70,10 @@ public class PlayerCamera : MonoBehaviour
         input = context.ReadValue<Vector2>();
     }
 
-    IEnumerator SendNotification(string text, int timeout)
+    IEnumerator SendNotification(Text textHolder, string text, int timeout)
     {
-        notificationText.text = text;
+        textHolder.text = text;
         yield return new WaitForSeconds(timeout);
-        notificationText.text = "";
+        textHolder.text = "";
     }
 }
