@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using System.Diagnostics;
 
 public class PoleThrower : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class PoleThrower : MonoBehaviour
     public Transform orientation;
     public Text strenghtText;
     public Text throwsText;
+    public AudioClip throwSoundClip;
+
 
     private bool startedThrow = false;
     private bool throwing = false;
@@ -78,6 +81,16 @@ public class PoleThrower : MonoBehaviour
         rb.angularVelocity = Vector3.down * 10.0f;
         rb.AddForce(orientation.transform.forward * throwForce, ForceMode.VelocityChange);
         rb.AddTorque(Vector3.down * 10000.0f);
+
+        // Check if the AudioClip is assigned to avoid null reference exceptions
+        if (throwSoundClip != null)
+        {
+            AudioManager.Instance.PlaySoundEffect(throwSoundClip);
+        }
+        else
+        {
+            UnityEngine.Debug.LogWarning("Throw sound clip not assigned.");
+        }
 
         ResetAfterThrow();
     }

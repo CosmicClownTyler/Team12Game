@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
@@ -45,5 +46,17 @@ public class AudioManager : MonoBehaviour
     public void SetUIVolume(float volume)
     {
         uiSource.volume = volume;
+    }
+
+    public void PlaySoundEffect(AudioClip clip)
+    {
+        if (clip != null)
+        {
+            effectsSource.PlayOneShot(clip);
+        }
+        else
+        {
+            UnityEngine.Debug.LogWarning("Attempted to play a null sound effect.");
+        }
     }
 }

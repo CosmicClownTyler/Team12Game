@@ -1087,6 +1087,7 @@ MonoBehaviour:
   orientation: {fileID: 30323026}
   strenghtText: {fileID: 965368540}
   throwsText: {fileID: 1914270071}
+  throwSoundClip: {fileID: 8300000, guid: 4d07cee968c7496499b549b4eecea4a0, type: 3}
 --- !u!114 &174835008
 MonoBehaviour:
   m_ObjectHideFlags: 0
