@@ -48,7 +48,16 @@ public class GameLogic : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        IngameNotification.enabled = false;
+        // Disable IngameNotification if it is assigned
+        if (IngameNotification != null)
+        {
+            IngameNotification.enabled = false;
+        }
+        else
+        {
+            UnityEngine.Debug.LogError("IngameNotification is not assigned!");
+        }
+
         totalThrows = 0;
         totalPerObjectThrows = 0;
         currentObject = null;
