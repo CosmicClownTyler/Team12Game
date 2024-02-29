@@ -1,12 +1,8 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Linq;
 using UnityEngine.SceneManagement;
 using TMPro;
-using UnityEngine.Rendering;
-using UnityEditor.Experimental.GraphView;
 
 public class GameLogic : MonoBehaviour
 {
@@ -43,10 +39,6 @@ public class GameLogic : MonoBehaviour
     // Throw statistics
     private int totalThrows = 0;
     private int throwsPerPinGroup = 0;
-
-    // 
-    private bool playerForward = false;
-    private bool playerBack = true;
 
     private GameObject player;
     private BatThrower playerThrower;
@@ -131,7 +123,6 @@ public class GameLogic : MonoBehaviour
         if (currentPinGroup != null)
         {
             Destroy(currentPinGroup);
-            //MovePlayerBack();
         }
 
         // Reset the throws per pin group when the new one is spawned
@@ -143,7 +134,7 @@ public class GameLogic : MonoBehaviour
 
     }
 
-    public void SpawnCurrentPinGroup()
+    private void SpawnCurrentPinGroup()
     {
         currentPinGroup = Instantiate(currentPinGroupPrefab, pinGroupSpawn.position, pinGroupSpawn.rotation);
         currentPinGroupStopChecker = currentPinGroup.GetComponent<PinGroupStopChecker>();
@@ -188,30 +179,6 @@ public class GameLogic : MonoBehaviour
         }
     }
 
-    public void MovePlayerBack()
-    {
-        if (playerBack)
-        {
-            ShowTextOnScreen("Congratulations! You knocked the whole figure out of the gorod in one shot!", 7);
-            return;
-        }
-
-        if (GetTotalThrows() > 0)
-        {
-            string text = string.Format("Congratulations! You knocked the whole figure out of the gorod in {0} throws. Moving you back to the start", GetTotalPerObjectThrows());
-            ShowTextOnScreen(text, 7);
-
-            Vector3 move = new Vector3(0, 0, -10f);
-            playerThrower.transform.position += move;
-
-            playerBack = true;
-            playerForward = false;
-        }
-
-        // Reset throws per figure
-        throwsPerPinGroup = 0;
-    }
-
     private void MovePlayerToFirstThrowingArea()
     {
         playerThrower.transform.position = firstThrowingArea.position;
@@ -235,11 +202,6 @@ public class GameLogic : MonoBehaviour
     public int GetTotalPerObjectThrows()
     {
         return throwsPerPinGroup;
-    }
-
-    public int GetScoredGorodkov()
-    {
-        return currentPinGroupIndex - 1;
     }
 
     private IEnumerator ReturnToMenu(int timeout)
