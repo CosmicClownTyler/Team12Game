@@ -1,0 +1,445 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &718528329542912615
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5152661382217654852}
+  - component: {fileID: -6118925243752834540}
+  - component: {fileID: 559584610838343331}
+  m_Layer: 0
+  m_Name: 0 (Template)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5152661382217654852
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 718528329542912615}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 3645945901706184913}
+  - {fileID: 8427009334583012581}
+  - {fileID: 2829499748180754153}
+  - {fileID: 4020521968043245228}
+  - {fileID: 7142900391252069741}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &-6118925243752834540
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 718528329542912615}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: f355407100bae28498100401dec98767, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!114 &559584610838343331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 718528329542912615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6a25932d592fce49a8257a1a915b299, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1001 &715700918339696001
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 5152661382217654852}
+    m_Modifications:
+    - target: {fileID: 4285085205438659920, guid: 392c73cd60af7af4c99b348dd80a97b7,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4285085205438659920, guid: 392c73cd60af7af4c99b348dd80a97b7,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4285085205438659920, guid: 392c73cd60af7af4c99b348dd80a97b7,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4285085205438659920, guid: 392c73cd60af7af4c99b348dd80a97b7,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4285085205438659920, guid: 392c73cd60af7af4c99b348dd80a97b7,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4285085205438659920, guid: 392c73cd60af7af4c99b348dd80a97b7,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4285085205438659920, guid: 392c73cd60af7af4c99b348dd80a97b7,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4285085205438659920, guid: 392c73cd60af7af4c99b348dd80a97b7,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4285085205438659920, guid: 392c73cd60af7af4c99b348dd80a97b7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4285085205438659920, guid: 392c73cd60af7af4c99b348dd80a97b7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4285085205438659920, guid: 392c73cd60af7af4c99b348dd80a97b7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4505909617502794238, guid: 392c73cd60af7af4c99b348dd80a97b7,
+        type: 3}
+      propertyPath: m_Name
+      value: Gorod Cylinder (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 392c73cd60af7af4c99b348dd80a97b7, type: 3}
+--- !u!4 &3645945901706184913 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4285085205438659920, guid: 392c73cd60af7af4c99b348dd80a97b7,
+    type: 3}
+  m_PrefabInstance: {fileID: 715700918339696001}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &917728442016646140
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 5152661382217654852}
+    m_Modifications:
+    - target: {fileID: 4285085205438659920, guid: 392c73cd60af7af4c99b348dd80a97b7,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4285085205438659920, guid: 392c73cd60af7af4c99b348dd80a97b7,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4285085205438659920, guid: 392c73cd60af7af4c99b348dd80a97b7,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4285085205438659920, guid: 392c73cd60af7af4c99b348dd80a97b7,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4285085205438659920, guid: 392c73cd60af7af4c99b348dd80a97b7,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4285085205438659920, guid: 392c73cd60af7af4c99b348dd80a97b7,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4285085205438659920, guid: 392c73cd60af7af4c99b348dd80a97b7,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4285085205438659920, guid: 392c73cd60af7af4c99b348dd80a97b7,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4285085205438659920, guid: 392c73cd60af7af4c99b348dd80a97b7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4285085205438659920, guid: 392c73cd60af7af4c99b348dd80a97b7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4285085205438659920, guid: 392c73cd60af7af4c99b348dd80a97b7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4505909617502794238, guid: 392c73cd60af7af4c99b348dd80a97b7,
+        type: 3}
+      propertyPath: m_Name
+      value: Gorod Cylinder (4)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 392c73cd60af7af4c99b348dd80a97b7, type: 3}
+--- !u!4 &4020521968043245228 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4285085205438659920, guid: 392c73cd60af7af4c99b348dd80a97b7,
+    type: 3}
+  m_PrefabInstance: {fileID: 917728442016646140}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2032189193319154617
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 5152661382217654852}
+    m_Modifications:
+    - target: {fileID: 4285085205438659920, guid: 392c73cd60af7af4c99b348dd80a97b7,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4285085205438659920, guid: 392c73cd60af7af4c99b348dd80a97b7,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4285085205438659920, guid: 392c73cd60af7af4c99b348dd80a97b7,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4285085205438659920, guid: 392c73cd60af7af4c99b348dd80a97b7,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4285085205438659920, guid: 392c73cd60af7af4c99b348dd80a97b7,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4285085205438659920, guid: 392c73cd60af7af4c99b348dd80a97b7,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4285085205438659920, guid: 392c73cd60af7af4c99b348dd80a97b7,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4285085205438659920, guid: 392c73cd60af7af4c99b348dd80a97b7,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4285085205438659920, guid: 392c73cd60af7af4c99b348dd80a97b7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4285085205438659920, guid: 392c73cd60af7af4c99b348dd80a97b7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4285085205438659920, guid: 392c73cd60af7af4c99b348dd80a97b7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4505909617502794238, guid: 392c73cd60af7af4c99b348dd80a97b7,
+        type: 3}
+      propertyPath: m_Name
+      value: Gorod Cylinder (3)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 392c73cd60af7af4c99b348dd80a97b7, type: 3}
+--- !u!4 &2829499748180754153 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4285085205438659920, guid: 392c73cd60af7af4c99b348dd80a97b7,
+    type: 3}
+  m_PrefabInstance: {fileID: 2032189193319154617}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5730107171946582453
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 5152661382217654852}
+    m_Modifications:
+    - target: {fileID: 4285085205438659920, guid: 392c73cd60af7af4c99b348dd80a97b7,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4285085205438659920, guid: 392c73cd60af7af4c99b348dd80a97b7,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4285085205438659920, guid: 392c73cd60af7af4c99b348dd80a97b7,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4285085205438659920, guid: 392c73cd60af7af4c99b348dd80a97b7,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4285085205438659920, guid: 392c73cd60af7af4c99b348dd80a97b7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4285085205438659920, guid: 392c73cd60af7af4c99b348dd80a97b7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4285085205438659920, guid: 392c73cd60af7af4c99b348dd80a97b7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4505909617502794238, guid: 392c73cd60af7af4c99b348dd80a97b7,
+        type: 3}
+      propertyPath: m_Name
+      value: Gorod Cylinder (2)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 392c73cd60af7af4c99b348dd80a97b7, type: 3}
+--- !u!4 &8427009334583012581 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4285085205438659920, guid: 392c73cd60af7af4c99b348dd80a97b7,
+    type: 3}
+  m_PrefabInstance: {fileID: 5730107171946582453}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6365556898303307837
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 5152661382217654852}
+    m_Modifications:
+    - target: {fileID: 4285085205438659920, guid: 392c73cd60af7af4c99b348dd80a97b7,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4285085205438659920, guid: 392c73cd60af7af4c99b348dd80a97b7,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4285085205438659920, guid: 392c73cd60af7af4c99b348dd80a97b7,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4285085205438659920, guid: 392c73cd60af7af4c99b348dd80a97b7,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4285085205438659920, guid: 392c73cd60af7af4c99b348dd80a97b7,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4285085205438659920, guid: 392c73cd60af7af4c99b348dd80a97b7,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4285085205438659920, guid: 392c73cd60af7af4c99b348dd80a97b7,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4285085205438659920, guid: 392c73cd60af7af4c99b348dd80a97b7,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4285085205438659920, guid: 392c73cd60af7af4c99b348dd80a97b7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4285085205438659920, guid: 392c73cd60af7af4c99b348dd80a97b7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4285085205438659920, guid: 392c73cd60af7af4c99b348dd80a97b7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4505909617502794238, guid: 392c73cd60af7af4c99b348dd80a97b7,
+        type: 3}
+      propertyPath: m_Name
+      value: Gorod Cylinder (5)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 392c73cd60af7af4c99b348dd80a97b7, type: 3}
+--- !u!4 &7142900391252069741 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4285085205438659920, guid: 392c73cd60af7af4c99b348dd80a97b7,
+    type: 3}
+  m_PrefabInstance: {fileID: 6365556898303307837}
+  m_PrefabAsset: {fileID: 0}

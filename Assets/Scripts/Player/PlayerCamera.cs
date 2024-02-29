@@ -1,20 +1,16 @@
-﻿using Cinemachine.Utility;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
+using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
 
 public class PlayerCamera : MonoBehaviour
 {
     [Header("References")]
     public Transform orientation;
-    public Transform player;
     public Transform playerObject;
     public Rigidbody rb;
     public float rotationSpeed;
-    public Text notificationText;
+    public TextMeshProUGUI notificationText;
 
     public Transform shootingLookAt;
 
@@ -37,7 +33,7 @@ public class PlayerCamera : MonoBehaviour
 
     private void Update()
     {
-        Vector3 viewDirection = player.position - new Vector3(transform.position.x, player.position.y, transform.position.z);
+        Vector3 viewDirection = playerObject.position - new Vector3(transform.position.x, playerObject.position.y, transform.position.z);
         orientation.forward = viewDirection.normalized;
 
         if (currentStyle == CameraStyle.Exploration)
@@ -70,7 +66,7 @@ public class PlayerCamera : MonoBehaviour
         input = context.ReadValue<Vector2>();
     }
 
-    IEnumerator SendNotification(Text textHolder, string text, int timeout)
+    private IEnumerator SendNotification(TextMeshProUGUI textHolder, string text, int timeout)
     {
         textHolder.text = text;
         yield return new WaitForSeconds(timeout);

@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
-using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -28,11 +25,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 moveAmount;
     private Rigidbody rb;
 
-    //[HideInInspector] public TextMeshProUGUI text_speed;
-
     private void Start()
     {
-        Debug.Log("Starting");
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
 
@@ -84,8 +78,6 @@ public class PlayerMovement : MonoBehaviour
             Vector3 limitedVel = flatVel.normalized * moveSpeed;
             rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
         }
-
-        //text_speed.SetText("Velocity: " + flatVel.magnitude);
     }
 
     // actual movement
@@ -107,7 +99,6 @@ public class PlayerMovement : MonoBehaviour
         canJump = false;
 
         // reset y velocity
-        Debug.Log("Jumping");
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);

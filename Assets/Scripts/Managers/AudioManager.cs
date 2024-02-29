@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
@@ -56,7 +52,7 @@ public class AudioManager : MonoBehaviour
         }
         else
         {
-            UnityEngine.Debug.LogWarning("Attempted to play a null sound effect.");
+            Debug.LogWarning("Attempted to play a null sound effect.");
         }
     }
 }

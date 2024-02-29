@@ -1,9 +1,5 @@
-﻿using JetBrains.Annotations;
-using System;
-using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
