@@ -36,10 +36,6 @@ public class GameLogic : MonoBehaviour
     // Whether or not the pins have moved since the last check
     private bool havePinsMovedSinceLastCheck = false;
 
-    // Throw statistics
-    private int totalThrows = 0;
-    private int throwsPerPinGroup = 0;
-
     private GameObject player;
     private BatThrower playerThrower;
 
@@ -87,7 +83,7 @@ public class GameLogic : MonoBehaviour
         {
             havePinsMovedSinceLastCheck = false;
 
-            if (throwsPerPinGroup >= 1)
+            if (playerThrower.GetCurrentThrows() >= 1)
             {
                 AfterThrow();
             }
@@ -126,30 +122,43 @@ public class GameLogic : MonoBehaviour
         }
 
         // Reset the throws per pin group when the new one is spawned
-        throwsPerPinGroup = 0;
+        playerThrower.ResetCurrentThrows();
 
         currentPinGroupIndex++;
         GetCurrentPinGroupPrefab();
         SpawnCurrentPinGroup();
 
     }
-
     private void SpawnCurrentPinGroup()
     {
         currentPinGroup = Instantiate(currentPinGroupPrefab, pinGroupSpawn.position, pinGroupSpawn.rotation);
         currentPinGroupStopChecker = currentPinGroup.GetComponent<PinGroupStopChecker>();
 
         currentPinGroupText.text = "Current Figure: #" + (currentPinGroupIndex + 1);
+
+        MovePlayerToFirstThrowingArea();
     }
 
+    // Move the player transform to the appropriate throwing areas
+    private void MovePlayerToFirstThrowingArea()
+    {
+        playerThrower.transform.position = firstThrowingArea.position;
+    }
+    private void MovePlayerToSecondThrowingArea()
+    {
+        playerThrower.transform.position = secondThrowingArea.position;
+    }
+    
+    // Throwing logic and statistics
     private void AfterThrow()
     {
         // If there are no pins left, move to the next pin group (or end the game if there are none left)
         if (!ContainsPinsInAnyAreas())
         {
-            if (throwsPerPinGroup > 1)
+            if (playerThrower.GetCurrentThrows() > 1)
             {
-                string text = string.Format("Congratulations! You knocked the whole figure out of the gorod in {0} throws. Moving you back to the start", GetTotalPerObjectThrows());
+                string text = string.Format("Congratulations! You knocked the whole figure out of the gorod in {0} throws. Moving you back to the start", 
+                    playerThrower.GetCurrentThrows());
                 ShowTextOnScreen(text, 7);
             }
             else
@@ -161,8 +170,7 @@ public class GameLogic : MonoBehaviour
             if (GameTypeManager.HasNextPinGroup(selectedGameType, currentPinGroupIndex))
             {
                 ShowTextOnScreen("You knocked some gorodki from the gorod. Moving you closer!", 7);
-                MovePlayerToFirstThrowingArea();
-                SpawnCurrentPinGroup();
+                MoveToNextPinGroup();
             }
             else
             {
@@ -172,36 +180,11 @@ public class GameLogic : MonoBehaviour
         else
         {
             // Move the player to the second throwing area if they've just completed their first throw
-            if (throwsPerPinGroup == 1)
+            if (playerThrower.GetCurrentThrows() == 1)
             {
                 MovePlayerToSecondThrowingArea();
             }
         }
-    }
-
-    private void MovePlayerToFirstThrowingArea()
-    {
-        playerThrower.transform.position = firstThrowingArea.position;
-    }
-    private void MovePlayerToSecondThrowingArea()
-    {
-        playerThrower.transform.position = secondThrowingArea.position;
-    }
-
-    public void IncreaseThrows()
-    {
-        totalThrows++;
-        throwsPerPinGroup++;
-    }
-
-    public int GetTotalThrows()
-    {
-        return totalThrows;
-    }
-
-    public int GetTotalPerObjectThrows()
-    {
-        return throwsPerPinGroup;
     }
 
     private IEnumerator ReturnToMenu(int timeout)
@@ -214,7 +197,7 @@ public class GameLogic : MonoBehaviour
 
     private void GameCompleted()
     {
-        string gameCompletexText = string.Format("Congratulations! You finished the game with a total of {0} throws. Well done!", GetTotalPerObjectThrows());
+        string gameCompletexText = string.Format("Congratulations! You finished the game with a total of {0} throws. Well done!", playerThrower.GetTotalThrows());
         ShowTextOnScreen(gameCompletexText, 7);
 
         StartCoroutine(ReturnToMenu(3));
@@ -222,6 +205,7 @@ public class GameLogic : MonoBehaviour
         return;
     }
 
+    // UI methods
     private IEnumerator SendNotification(string text, int timeout)
     {
         Debug.Log(text);

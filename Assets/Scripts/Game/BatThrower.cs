@@ -20,15 +20,13 @@ public class BatThrower : MonoBehaviour
     private bool throwing = false;
     private bool throwableAgain = true;
     private bool throwForceDirectionUp = true;
-    
-    private GameObject gameArea;
-    private GameLogic gameAreaLogic;
+
+    // 
+    private int throwCountTotal;
+    private int throwCountCurrentPinGroup;
 
     private void Start()
     {
-        gameArea = GameObject.FindWithTag("GameArea");
-        gameAreaLogic = gameArea.GetComponent<GameLogic>();
-
         throwForce = throwForceMinLimit;
     }
 
@@ -47,7 +45,7 @@ public class BatThrower : MonoBehaviour
         }
 
         // Update text fields
-        throwsText.text = "Total Throws: " + gameAreaLogic.GetTotalThrows();
+        throwsText.text = "Total Throws: " + throwCountTotal;
     }
 
     // Update the throw force as the throw button is held down
@@ -82,6 +80,10 @@ public class BatThrower : MonoBehaviour
     {
         // Player should not be able to throw until after all objects have stopped moving (handled in CollisionProcessor.cs)
         throwableAgain = false;
+        
+        // Increment the throw counts
+        throwCountTotal++;
+        throwCountCurrentPinGroup++;
 
         // Instantiate a new bat and add the force
         GameObject bat = Instantiate(batPrefab, transform.position, transform.rotation);
@@ -101,12 +103,23 @@ public class BatThrower : MonoBehaviour
     // Reset back
     private void ResetAfterThrow()
     {
-        gameAreaLogic.IncreaseThrows();
         throwForce = throwForceMinLimit;
         startedThrow = false;
         throwForceDirectionUp = true;
     }
 
+    public int GetTotalThrows()
+    {
+        return throwCountTotal;
+    }
+    public int GetCurrentThrows()
+    {
+        return throwCountCurrentPinGroup;
+    }
+    public void ResetCurrentThrows()
+    {
+        throwCountCurrentPinGroup = 0;
+    }
     public float GetForceValue()
     {
         return throwForce;
