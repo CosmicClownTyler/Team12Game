@@ -66,8 +66,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b3121b471e1cfe041be19ad9fa05d63a, type: 2}
-  m_sharedMaterial: {fileID: -7556150837997927447, guid: b3121b471e1cfe041be19ad9fa05d63a,
+  m_fontAsset: {fileID: 11400000, guid: 541a75dd35e027a4087b33beb11a5c66, type: 2}
+  m_sharedMaterial: {fileID: 7130445101301108422, guid: 541a75dd35e027a4087b33beb11a5c66,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -330,8 +330,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b3121b471e1cfe041be19ad9fa05d63a, type: 2}
-  m_sharedMaterial: {fileID: -7556150837997927447, guid: b3121b471e1cfe041be19ad9fa05d63a,
+  m_fontAsset: {fileID: 11400000, guid: 541a75dd35e027a4087b33beb11a5c66, type: 2}
+  m_sharedMaterial: {fileID: 7130445101301108422, guid: 541a75dd35e027a4087b33beb11a5c66,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -540,7 +540,7 @@ GameObject:
   - component: {fileID: 8260769907977111472}
   - component: {fileID: 8260769907977111473}
   m_Layer: 5
-  m_Name: Menu Rebind Button
+  m_Name: Rebind Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -670,8 +670,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b3121b471e1cfe041be19ad9fa05d63a, type: 2}
-  m_sharedMaterial: {fileID: -7556150837997927447, guid: b3121b471e1cfe041be19ad9fa05d63a,
+  m_fontAsset: {fileID: 11400000, guid: 541a75dd35e027a4087b33beb11a5c66, type: 2}
+  m_sharedMaterial: {fileID: 7130445101301108422, guid: 541a75dd35e027a4087b33beb11a5c66,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}

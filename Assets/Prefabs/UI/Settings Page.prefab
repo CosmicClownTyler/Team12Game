@@ -111,21 +111,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2142007462086535906, guid: b96857de5f20c20418021a4270f2f3e2,
         type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2142007462086535906, guid: b96857de5f20c20418021a4270f2f3e2,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2142007462086535906, guid: b96857de5f20c20418021a4270f2f3e2,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2142007462086535906, guid: b96857de5f20c20418021a4270f2f3e2,
-        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -1140,30 +1125,15 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 398123449473392696, guid: 32859e828caf2914d9c33979597b0ab6,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1065869170005174137, guid: 32859e828caf2914d9c33979597b0ab6,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1065869170005174137, guid: 32859e828caf2914d9c33979597b0ab6,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1879490254991999285, guid: 32859e828caf2914d9c33979597b0ab6,
         type: 3}
       propertyPath: m_text
       value: GAMEPLAY
-      objectReference: {fileID: 0}
-    - target: {fileID: 1879490254991999285, guid: 32859e828caf2914d9c33979597b0ab6,
-        type: 3}
-      propertyPath: m_VerticalAlignment
-      value: 512
       objectReference: {fileID: 0}
     - target: {fileID: 1879490255402327057, guid: 32859e828caf2914d9c33979597b0ab6,
         type: 3}
@@ -1444,21 +1414,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2142007462086535906, guid: b96857de5f20c20418021a4270f2f3e2,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2142007462086535906, guid: b96857de5f20c20418021a4270f2f3e2,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2142007462086535906, guid: b96857de5f20c20418021a4270f2f3e2,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2142007462086535906, guid: b96857de5f20c20418021a4270f2f3e2,
         type: 3}

@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 8410815e39bed6c41b313b93dd124d3c
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Crazy Ivan
+  fontNames:
+  - Crazy Ivan
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: bfd04f7e6596eeb438ab407fcfb57fdd, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

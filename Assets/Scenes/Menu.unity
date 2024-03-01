@@ -545,7 +545,7 @@ MonoBehaviour:
 
     made digital'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b3121b471e1cfe041be19ad9fa05d63a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 541a75dd35e027a4087b33beb11a5c66, type: 2}
   m_sharedMaterial: {fileID: 1713363336654376608, guid: 2c8f16035205a6e4893ab122bcf5ddcd,
     type: 2}
   m_fontSharedMaterials: []
@@ -1497,7 +1497,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Goody Gorodki
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b3121b471e1cfe041be19ad9fa05d63a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 541a75dd35e027a4087b33beb11a5c66, type: 2}
   m_sharedMaterial: {fileID: 1713363336654376608, guid: 2c8f16035205a6e4893ab122bcf5ddcd,
     type: 2}
   m_fontSharedMaterials: []
@@ -2202,7 +2202,7 @@ MonoBehaviour:
 
     Ahmed Ahmed'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b3121b471e1cfe041be19ad9fa05d63a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 541a75dd35e027a4087b33beb11a5c66, type: 2}
   m_sharedMaterial: {fileID: 1713363336654376608, guid: 2c8f16035205a6e4893ab122bcf5ddcd,
     type: 2}
   m_fontSharedMaterials: []

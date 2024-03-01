@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5875950395695814180}
   - component: {fileID: 2892166206485828503}
   m_Layer: 5
-  m_Name: Menu Tab Button
+  m_Name: Tab Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -173,8 +173,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: DEFAULT
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b3121b471e1cfe041be19ad9fa05d63a, type: 2}
-  m_sharedMaterial: {fileID: 3883170158811153517, guid: b3121b471e1cfe041be19ad9fa05d63a,
+  m_fontAsset: {fileID: 11400000, guid: 541a75dd35e027a4087b33beb11a5c66, type: 2}
+  m_sharedMaterial: {fileID: 7130445101301108422, guid: 541a75dd35e027a4087b33beb11a5c66,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
