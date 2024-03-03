@@ -1,3 +1,6 @@
+# Mac files
+*.DS_store
+
 # Visual Studio and VS Code cache, temp, and build output files. 
 *.vs/
 *.vscode/
