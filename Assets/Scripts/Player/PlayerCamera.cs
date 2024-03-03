@@ -31,6 +31,8 @@ public class PlayerCamera : MonoBehaviour
 
     private void Update()
     {
+        input = InputManager.Instance.LookInput;
+
         Vector3 viewDirection = playerObject.position - new Vector3(transform.position.x, playerObject.position.y, transform.position.z);
         orientation.forward = viewDirection.normalized;
 

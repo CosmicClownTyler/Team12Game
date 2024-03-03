@@ -129,6 +129,7 @@ public class GameArea : MonoBehaviour
         SpawnCurrentPinGroup();
 
     }
+
     private void SpawnCurrentPinGroup()
     {
         currentPinGroup = Instantiate(currentPinGroupPrefab, pinGroupSpawn.position, pinGroupSpawn.rotation);
