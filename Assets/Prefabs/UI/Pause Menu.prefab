@@ -295,7 +295,7 @@ MonoBehaviour:
   pauseMenuPageGroup: {fileID: 1544272891915601339}
   mainPage: {fileID: 8234561982872574544}
   settingsPage: {fileID: 8711262261619857799}
-  modalPopup: {fileID: 4388596967611380519}
+  menuPopup: {fileID: 4388596967611380519}
 --- !u!1001 &444558536215953710
 PrefabInstance:
   m_ObjectHideFlags: 0
