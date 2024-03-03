@@ -7,7 +7,9 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
-#if (UNITY_WEBGL)
+#if UNITY_EDITOR
+        // Do nothing (this directive avoids disabling the exit button in edit mode)
+#elif (UNITY_WEBGL)
         exitButton.SetActive(false);
 #endif
     }

@@ -28,10 +28,12 @@ public class GameManager : MonoBehaviour
 
     public void ExitGame()
     {
-#if (UNITY_EDITOR)
+#if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
-#elif (UNITY_STANDALONE)
+#elif UNITY_STANDALONE
         Application.Quit();
+#elif UNITY_WEBGL
+        // Do nothing (can't reliably force close a webgl build)
 #endif
     }
 
