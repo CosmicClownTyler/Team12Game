@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -23,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform orientation;
 
     private Vector2 moveAmount;
+    private bool jumping;
     private Rigidbody rb;
 
     private void Start()
@@ -35,11 +35,23 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        // get input
+        moveAmount = InputManager.Instance.MoveInput;
+        jumping = InputManager.Instance.JumpWasPressed;
+
         // ground check
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
+    }
 
-        // handle speed
+    private void FixedUpdate()
+    {
+        Move();
         SpeedHandler();
+        
+        if (canJump && grounded && jumping)
+        {
+            Jump();
+        }
 
         // handle drag
         if (grounded)
@@ -48,39 +60,6 @@ public class PlayerMovement : MonoBehaviour
             rb.drag = 0;
     }
 
-    private void FixedUpdate()
-    {
-        Move();
-    }
-
-    // movement events (subscribed to in inspector)
-    public void OnMove(InputAction.CallbackContext context)
-    {
-        // read move input
-        moveAmount = context.ReadValue<Vector2>();
-    }
-    public void OnJump(InputAction.CallbackContext context)
-    {
-        // when to jump
-        if (canJump && grounded)
-        {
-            Jump();
-        }
-    }
-
-    private void SpeedHandler()
-    {
-        Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-
-        // limit velocity if needed
-        if (flatVel.magnitude > moveSpeed)
-        {
-            Vector3 limitedVel = flatVel.normalized * moveSpeed;
-            rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
-        }
-    }
-
-    // actual movement
     private void Move()
     {
         // calculate movement direction
@@ -108,5 +87,16 @@ public class PlayerMovement : MonoBehaviour
     private void JumpRestart()
     {
         canJump = true;
+    }
+    private void SpeedHandler()
+    {
+        Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+
+        // limit velocity if needed
+        if (flatVel.magnitude > moveSpeed)
+        {
+            Vector3 limitedVel = flatVel.normalized * moveSpeed;
+            rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
+        }
     }
 }

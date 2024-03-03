@@ -21,7 +21,7 @@ public class BatThrower : MonoBehaviour
     private bool throwableAgain = true;
     private bool throwForceDirectionUp = true;
 
-    // 
+    // Throwing statistics
     private int throwCountTotal;
     private int throwCountCurrentPinGroup;
 
@@ -32,6 +32,21 @@ public class BatThrower : MonoBehaviour
 
     private void Update()
     {
+        // When the throw is finished
+        if (InputManager.Instance.ThrowWasReleased && throwing)
+        {
+            throwing = false;
+            forceText.text = "Throw force: N/A";
+        }
+
+        // When the throw is started
+        if (InputManager.Instance.ThrowIsHeld && IsThrowable())
+        {
+            startedThrow = true;
+            throwing = true;
+        }
+
+
         // If the throw button is currently held down
         if (throwing)
         {
@@ -131,29 +146,5 @@ public class BatThrower : MonoBehaviour
     public bool IsThrowable()
     {
         return throwableAgain;
-    }
-
-    // events (subscribed to in inspector)
-    public void OnThrow(InputAction.CallbackContext context)
-    {
-        // When the mouse button is pressed at all (not used)
-        if (context.phase == InputActionPhase.Started)
-        {
-            
-        }
-        
-        // When the mouse button is released (throw is finished)
-        if (context.phase == InputActionPhase.Canceled)
-        {
-            throwing = false;
-            forceText.text = "Throw force: N/A";
-        }
-        
-        // When the mouse button is held down for at least the set time (throw is started)
-        if (context.phase == InputActionPhase.Performed && IsThrowable())
-        {
-            startedThrow = true;
-            throwing = true;
-        }
     }
 }

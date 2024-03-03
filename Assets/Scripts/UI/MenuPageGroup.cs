@@ -54,22 +54,13 @@ public class MenuPageGroup : MonoBehaviour
         ActivatePage(page);
     }
 
-    // Activate all child objects for this page
     private void ActivatePage(MenuPage page)
     {
-        foreach (RectTransform rt in page.GetComponentInChildren<RectTransform>())
-        {
-            rt.gameObject.SetActive(true);
-            activePage = page;
-        }
+        page.ActivatePage();
+        activePage = page;
     }
-
-    // Deactivate all child objects for this page
     private void DeactivatePage(MenuPage page)
     {
-        foreach (RectTransform rt in page.GetComponentInChildren<RectTransform>())
-        {
-            rt.gameObject.SetActive(false);
-        }
+        page.DeactivatePage();
     }
 }

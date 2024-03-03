@@ -2,6 +2,7 @@
 
 public class AudioManager : MonoBehaviour
 {
+    // Singleton
     public static AudioManager Instance;
 
     [SerializeField] private AudioSource musicSource;
@@ -10,7 +11,9 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null) {
+        // Manage singleton
+        if (Instance == null)
+        {
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }

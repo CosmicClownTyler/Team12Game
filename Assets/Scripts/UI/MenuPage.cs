@@ -11,5 +11,32 @@ public class MenuPage : MonoBehaviour
     private void Start()
     {
         pageGroup.Subscribe(this);
+
+        if (isDefaultPage)
+        {
+            ActivatePage();
+        }
+        else
+        {
+            DeactivatePage();
+        }
+    }
+
+    // Activate all child objects for this page
+    public void ActivatePage()
+    {
+        foreach (RectTransform rt in GetComponentInChildren<RectTransform>())
+        {
+            rt.gameObject.SetActive(true);
+        }
+    }
+
+    // Deactivate all child objects for this page
+    public void DeactivatePage()
+    {
+        foreach (RectTransform rt in GetComponentInChildren<RectTransform>())
+        {
+            rt.gameObject.SetActive(false);
+        }
     }
 }
