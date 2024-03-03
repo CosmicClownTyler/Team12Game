@@ -7,10 +7,7 @@ public class PauseManager : MonoBehaviour
 
     public bool IsPaused = false;
 
-    public GameObject pauseMenu;
-    public MenuPageGroup pauseMenuPageGroup;
-    public MenuPage mainPage;
-    public MenuPage settingsPage;
+    public PauseMenu pauseMenu;
 
     private void Awake()
     {
@@ -42,7 +39,7 @@ public class PauseManager : MonoBehaviour
     public void Pause()
     {
         IsPaused = true;
-        pauseMenu.SetActive(true);
+        pauseMenu.ShowPauseMenu();
         Time.timeScale = 0;
         InputManager.Instance.PauseGameInput();
         GameManager.Instance.UnlockCursor();
@@ -52,12 +49,11 @@ public class PauseManager : MonoBehaviour
     public void Resume()
     {
         IsPaused = false;
-        pauseMenu.SetActive(false);
+        pauseMenu.HidePauseMenu();
         Time.timeScale = 1;
         InputManager.Instance.ResumeGameInput();
         GameManager.Instance.LockCursor();
         PlayerManager.Instance.EnablePlayerUI();
-        pauseMenuPageGroup.SelectPage(mainPage);
     }
 
 }
