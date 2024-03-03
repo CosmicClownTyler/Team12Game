@@ -5,7 +5,7 @@ public class PauseMenu : MonoBehaviour
     public MenuPageGroup pauseMenuPageGroup;
     public MenuPage mainPage;
     public MenuPage settingsPage;
-    public GameObject modalPopup;
+    public GameObject menuPopup;
 
     public void Resume()
     {
@@ -26,11 +26,11 @@ public class PauseMenu : MonoBehaviour
 
     public void ShowMenuModal()
     {
-        modalPopup.SetActive(true);
+        menuPopup.SetActive(true);
     }
     public void HideMenuModal()
     {
-        modalPopup.SetActive(false);
+        menuPopup.SetActive(false);
     }
 
     public void ReturnToMenu()
