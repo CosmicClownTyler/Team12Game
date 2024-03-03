@@ -35,7 +35,8 @@ public class GameLogic : MonoBehaviour
     private PinGroupStopChecker currentPinGroupStopChecker;
     // Whether or not the pins have moved since the last check
     private bool havePinsMovedSinceLastCheck = false;
-
+    // This will ensure that SpawnCurrentPinGroup is called before using it's components 
+    private bool initializationComplete = false;
     // Throw statistics
     private int totalThrows = 0;
     private int throwsPerPinGroup = 0;
@@ -78,10 +79,18 @@ public class GameLogic : MonoBehaviour
         // Get the pin group prefab and spawn it
         GetCurrentPinGroupPrefab();
         SpawnCurrentPinGroup();
+        initializationComplete = true;
     }
 
     private void Update()
     {
+        // Only update if the initialization is complete
+        if (initializationComplete == false)
+        {
+            // Initialization is not complete, return early
+            return;
+        }
+
         // If the pins are stopped after being moved
         if (havePinsMovedSinceLastCheck && currentPinGroupStopChecker.IsStopped())
         {
