@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
@@ -19,9 +20,34 @@ public class MainMenu : MonoBehaviour
         GameManager.Instance.StartTutorial();
     }
 
-    public void StartSingleplayerGame()
+    public void LoadParkScene()
     {
-        GameManager.Instance.StartGame(1);
+        GameManager.Instance.LoadScene("Park");
+    }
+    public void LoadCityScene()
+    {
+        GameManager.Instance.LoadScene("City");
+    }
+    public void LoadRandomScene()
+    {
+        float randInt = Random.Range(0, 10);
+        if (randInt > 5)
+        {
+            LoadParkScene();
+        }
+        else
+        {
+            LoadCityScene();
+        }
+    }
+
+    public void SetGameType(GameTypeComponent gameTypeComponent)
+    {
+        GameManager.Instance.SetGameType(gameTypeComponent.GameType);
+    }
+    public void SetGamePlayers(GamePlayersComponent gamePlayersComponent)
+    {
+        GameManager.Instance.SetGamePlayers(gamePlayersComponent.GamePlayers);
     }
 
     public void ShowExitModal()

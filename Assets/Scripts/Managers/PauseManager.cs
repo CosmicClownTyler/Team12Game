@@ -43,7 +43,8 @@ public class PauseManager : MonoBehaviour
         Time.timeScale = 0;
         InputManager.Instance.PauseGameInput();
         GameManager.Instance.UnlockCursor();
-        PlayerManager.Instance.DisablePlayerUI();
+        PlayerManager.Instance.DisableActivePlayerUI();
+        PlayerManager.Instance.GetActivePlayer().playerThrower.CancelThrow();
     }
 
     public void Resume()
@@ -53,7 +54,7 @@ public class PauseManager : MonoBehaviour
         Time.timeScale = 1;
         InputManager.Instance.ResumeGameInput();
         GameManager.Instance.LockCursor();
-        PlayerManager.Instance.EnablePlayerUI();
+        PlayerManager.Instance.EnableActivePlayerUI();
     }
 
 }

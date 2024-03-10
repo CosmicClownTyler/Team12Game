@@ -11,15 +11,6 @@ public class MenuPage : MonoBehaviour
     private void Start()
     {
         pageGroup.Subscribe(this);
-
-        if (isDefaultPage)
-        {
-            ActivatePage();
-        }
-        else
-        {
-            DeactivatePage();
-        }
     }
 
     // Activate all child objects for this page

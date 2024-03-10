@@ -5,10 +5,13 @@ public class AudioManager : MonoBehaviour
     // Singleton
     public static AudioManager Instance;
 
+    [Header("Audio Sources")]
     [SerializeField] private AudioSource musicSource;
     [SerializeField] private AudioSource effectsSource;
     [SerializeField] private AudioSource uiSource;
-    [SerializeField] private AudioClip defaultMusicClip;
+
+    [Header("Audio Clips")]
+    [SerializeField] private AudioClip backgroundMusic;
 
     private void Awake()
     {
@@ -32,7 +35,7 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        PlayBackgroundMusic(defaultMusicClip, true); // Automatically start playing the default music clip
+        PlayBackgroundMusic(backgroundMusic, true); // Automatically start playing the default music clip
     }
 
     public void PlayBackgroundMusic(AudioClip clip, bool loop = true)

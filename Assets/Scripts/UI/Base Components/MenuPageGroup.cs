@@ -10,6 +10,8 @@ public class MenuPageGroup : MonoBehaviour
     // The currently active page shown on screen
     private MenuPage activePage = null;
 
+    private bool hasDefaultPage = false;
+
     // Subscribe a menu page to this group
     public void Subscribe(MenuPage page)
     {
@@ -19,17 +21,26 @@ public class MenuPageGroup : MonoBehaviour
             menuPages = new List<MenuPage>();
         }
 
-        // Add the new page and deactivate all elements in case any are active
+        // Add the new page
         menuPages.Add(page);
-        DeactivatePage(page);
 
-        // Set the active page
-        if (activePage == null && page.isDefaultPage)
+        // Set the default page as active
+        if (page.isDefaultPage)
         {
             ActivatePage(page);
         }
-        // Show a warning that more than one page is marked as default
-        else if (page.isDefaultPage)
+        // Deactivate all elements in case any are active
+        else
+        {
+            DeactivatePage(page);
+        }
+
+        // Show a warning if there are more than one default pages
+        if (page.isDefaultPage && !hasDefaultPage)
+        {
+            hasDefaultPage = true;
+        }
+        else if (page.isDefaultPage && hasDefaultPage)
         {
             Debug.LogWarning("Only one page should be marked as default. ", page);
         }

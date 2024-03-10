@@ -1,8 +1,5 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
-using TMPro;
 
 public class GameArea : MonoBehaviour
 {
@@ -10,18 +7,13 @@ public class GameArea : MonoBehaviour
     public GameObject[] pinGroupPrefabArray;
     
     [Header("Game Settings")]
-    public GameType selectedGameType = GameType.One;
+    public GameType selectedGameType = GameType.Simple;
+    public GamePlayers selectedGamePlayers = GamePlayers.One;
 
     [Header("Locations")]
     public Transform pinGroupSpawn;
     public Transform firstThrowingArea;
     public Transform secondThrowingArea;
-
-    // Data:
-    [Header("Player References")]
-    public TextMeshProUGUI currentPinGroupText;
-    public Image notificationImage;
-    private TextMeshProUGUI notificationText;
 
     // The current pin group prefab to be instantiated
     private GameObject currentPinGroupPrefab;
@@ -36,10 +28,10 @@ public class GameArea : MonoBehaviour
     // Whether or not the pins have moved since the last check
     private bool havePinsMovedSinceLastCheck = false;
 
-    private GameObject player;
-    private BatThrower playerThrower;
-
     private AreaPinChecker[] areaPinCheckers;
+
+    private bool readyToStart = false;
+    private bool hasStarted = false;
 
     private void Start()
     {
@@ -49,21 +41,6 @@ public class GameArea : MonoBehaviour
             Debug.LogWarning("No pin group prefabs have been assigned in the inspector. ");
         }
 
-        // Disable the notification image if it is assigned, log a warning if it is not
-        if (notificationImage != null)
-        {
-            notificationText = notificationImage.GetComponentInChildren<TextMeshProUGUI>();
-            notificationImage.enabled = false;
-        }
-        else
-        {
-            Debug.LogError("The notification image is not assigned in the inspector. ");
-        }
-
-        // Get the player object
-        player = GameObject.FindWithTag("Player");
-        playerThrower = player.GetComponentInChildren<BatThrower>();
-
         // Get the area pin checkers for the city and suburb areas
         areaPinCheckers = GetComponentsInChildren<AreaPinChecker>();
 
@@ -71,28 +48,63 @@ public class GameArea : MonoBehaviour
         pinGroupIndices = GameTypeManager.GetPinGroupList(selectedGameType);
         currentPinGroupIndex = 0;
 
-        // Get the pin group prefab and spawn it
-        GetCurrentPinGroupPrefab();
-        SpawnCurrentPinGroup();
+        readyToStart = true;
     }
 
     private void Update()
     {
-        // If the pins are stopped after being moved
+        // Do nothing if the game has not started yet
+        if (!hasStarted)
+        {
+            return;
+        }
+
+        // cache the active player for this frame
+        Player activePlayer = PlayerManager.Instance.GetActivePlayer();
+
+        // If the pins have stopped after being moved (the player's throw has finished)
         if (havePinsMovedSinceLastCheck && currentPinGroupStopChecker.IsStopped())
         {
             havePinsMovedSinceLastCheck = false;
 
-            if (playerThrower.GetCurrentThrows() >= 1)
+            if (activePlayer.GetCurrentThrowCount() >= 1)
             {
                 AfterThrow();
             }
         }
 
-        // If the pins are moved after being stopped
-        if (!havePinsMovedSinceLastCheck && !currentPinGroupStopChecker.IsStopped())
+        // If the pins have moved after being stopped (the player has thrown and hit something)
+        if (!currentPinGroupStopChecker.IsStopped() && !havePinsMovedSinceLastCheck)
         {
             havePinsMovedSinceLastCheck = true;
+        }
+
+        // If the pins are stopped and the player thrower is waiting for the pins, set can throw
+        if (currentPinGroupStopChecker.IsStopped() && activePlayer.ThrowerWaitingOnPins() && !activePlayer.ThrowerWaitingOnBat())
+        {
+            activePlayer.SetCanThrow();
+        }
+    }
+
+    public void StartGame()
+    {
+        StartCoroutine(TryToStart());
+    }
+
+    private IEnumerator TryToStart()
+    {
+        if (readyToStart)
+        {
+            // Get the pin group prefab and spawn it
+            GetCurrentPinGroupPrefab();
+            SpawnCurrentPinGroup();
+            hasStarted = true;
+            yield break;
+        }
+        else
+        {
+            yield return new WaitForEndOfFrame();
+            yield return TryToStart();
         }
     }
 
@@ -112,7 +124,7 @@ public class GameArea : MonoBehaviour
 
     private void GetCurrentPinGroupPrefab()
     {
-        currentPinGroupPrefab = pinGroupPrefabArray[currentPinGroupIndex];
+        currentPinGroupPrefab = pinGroupPrefabArray[pinGroupIndices[currentPinGroupIndex]];
     }
     private void MoveToNextPinGroup()
     {
@@ -122,12 +134,11 @@ public class GameArea : MonoBehaviour
         }
 
         // Reset the throws per pin group when the new one is spawned
-        playerThrower.ResetCurrentThrows();
+        PlayerManager.Instance.GetActivePlayer().ResetCurrentThrowCount();
 
         currentPinGroupIndex++;
         GetCurrentPinGroupPrefab();
         SpawnCurrentPinGroup();
-
     }
 
     private void SpawnCurrentPinGroup()
@@ -135,7 +146,8 @@ public class GameArea : MonoBehaviour
         currentPinGroup = Instantiate(currentPinGroupPrefab, pinGroupSpawn.position, pinGroupSpawn.rotation);
         currentPinGroupStopChecker = currentPinGroup.GetComponent<PinGroupStopChecker>();
 
-        currentPinGroupText.text = "Current Figure: #" + (currentPinGroupIndex + 1);
+        string currentPinGroupText = "Current Figure: " + GetPrefabName(currentPinGroupPrefab) + " (" + (currentPinGroupIndex + 1) + "/" + (pinGroupIndices.Length) + ")";
+        PlayerManager.Instance.GetActivePlayer().playerUI.currentPinGroupText.text = currentPinGroupText;
 
         MovePlayerToFirstThrowingArea();
     }
@@ -143,34 +155,42 @@ public class GameArea : MonoBehaviour
     // Move the player transform to the appropriate throwing areas
     private void MovePlayerToFirstThrowingArea()
     {
-        playerThrower.transform.position = firstThrowingArea.position;
+        PlayerManager.Instance.GetActivePlayer().playerObject.transform.position = firstThrowingArea.position;
+        PlayerManager.Instance.GetActivePlayer().SetCanThrow();
     }
     private void MovePlayerToSecondThrowingArea()
     {
-        playerThrower.transform.position = secondThrowingArea.position;
+        PlayerManager.Instance.GetActivePlayer().playerObject.transform.position = secondThrowingArea.position;
+        PlayerManager.Instance.GetActivePlayer().SetCanThrow();
     }
     
     // Throwing logic and statistics
-    private void AfterThrow()
+    private void AfterThrow(bool hit = true)
     {
+        if (!hit)
+        {
+            ShowPlayerNotification("You missed! Try again. ", 7);
+            PlayerManager.Instance.GetActivePlayer().SetCanThrow();
+            return;
+        }
+
         // If there are no pins left, move to the next pin group (or end the game if there are none left)
         if (!ContainsPinsInAnyAreas())
         {
-            if (playerThrower.GetCurrentThrows() > 1)
+            if (PlayerManager.Instance.GetActivePlayer().GetCurrentThrowCount() > 1)
             {
-                string text = string.Format("Congratulations! You knocked the whole figure out of the gorod in {0} throws. Moving you back to the start", 
-                    playerThrower.GetCurrentThrows());
-                ShowTextOnScreen(text, 7);
+                string text = string.Format("Congratulations! You knocked the whole figure out of the gorod in {0} throws. Moving you back to the start",
+                    PlayerManager.Instance.GetActivePlayer().GetCurrentThrowCount());
+                ShowPlayerNotification(text, 7);
             }
             else
             {
-                ShowTextOnScreen("Congratulations! You knocked the whole figure out of the gorod in one shot!", 7);
+                ShowPlayerNotification("Congratulations! You knocked the whole figure out of the gorod in one shot!", 7);
             }
 
             // Move to the next pin group if it exists
             if (GameTypeManager.HasNextPinGroup(selectedGameType, currentPinGroupIndex))
             {
-                ShowTextOnScreen("You knocked some gorodki from the gorod. Moving you closer!", 7);
                 MoveToNextPinGroup();
             }
             else
@@ -181,9 +201,14 @@ public class GameArea : MonoBehaviour
         else
         {
             // Move the player to the second throwing area if they've just completed their first throw
-            if (playerThrower.GetCurrentThrows() == 1)
+            if (PlayerManager.Instance.GetActivePlayer().GetCurrentThrowCount() == 1)
             {
+                ShowPlayerNotification("You knocked some gorodki from the gorod. Moving you closer!", 7);
                 MovePlayerToSecondThrowingArea();
+            }
+            else
+            {
+                PlayerManager.Instance.GetActivePlayer().SetCanThrow();
             }
         }
     }
@@ -191,34 +216,34 @@ public class GameArea : MonoBehaviour
     private IEnumerator ReturnToMenu(int timeout)
     {
         yield return new WaitForSeconds(timeout);
-        //Cursor.visible = true;
-        //Cursor.lockState = CursorLockMode.None;
-        SceneManager.LoadScene("Menu", LoadSceneMode.Single);
+        GameManager.Instance.LoadScene("Menu");
     }
 
     private void GameCompleted()
     {
-        string gameCompletexText = string.Format("Congratulations! You finished the game with a total of {0} throws. Well done!", playerThrower.GetTotalThrows());
-        ShowTextOnScreen(gameCompletexText, 7);
+        string gameCompletexText = string.Format("Congratulations! You finished the game with a total of {0} throws. Well done!", PlayerManager.Instance.GetActivePlayer().GetTotalThrowCount());
+        ShowPlayerNotification(gameCompletexText, 7);
 
         StartCoroutine(ReturnToMenu(3));
         // TODO: Game over! Show score!
         return;
     }
 
-    // UI methods
-    private IEnumerator SendNotification(string text, int timeout)
+    private void ShowPlayerNotification(string text, int timeout)
     {
-        Debug.Log(text);
-        Debug.Log(timeout);
-        notificationImage.enabled = true;
-        notificationText.text = text;
-        yield return new WaitForSeconds(timeout);
-        notificationText.text = "";
-        notificationImage.enabled = false;
+        PlayerManager.Instance.GetActivePlayer().playerUI.ShowTextOnScreen(text, timeout);
     }
-    private void ShowTextOnScreen(string text, int time)
+    
+    // Return the name of the prefab without the sorting number (i.e. return "Cannon" for prefab "1 Cannon")
+    private string GetPrefabName(GameObject prefab)
     {
-        StartCoroutine(SendNotification(text, time));
+        string name = prefab.name;
+        string[] tokens = name.Split(' ');
+        string nameWithoutNumber = "";
+        for (int i = 1; i < tokens.Length; i++)
+        {
+            nameWithoutNumber += tokens[i] + " ";
+        }
+        return nameWithoutNumber.Trim();
     }
 }

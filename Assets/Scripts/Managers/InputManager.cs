@@ -14,7 +14,8 @@ public class InputManager : MonoBehaviour
     public bool ThrowIsHeld { get; private set; }
     public bool ThrowWasReleased { get; private set; }
     public bool JumpWasPressed { get; private set; }
-    public bool CameraChanged { get; private set; }
+    public bool CameraChangeWasPressed { get; private set; }
+    public bool CameraChangeWasReleased { get; private set; }
     public bool PausePressed { get; private set; }
     public bool ResumePressed { get; private set; }
 
@@ -104,13 +105,15 @@ public class InputManager : MonoBehaviour
         // When the camera change button is released
         if (context.phase == InputActionPhase.Canceled)
         {
-            CameraChanged = false;
+            CameraChangeWasPressed = false;
+            CameraChangeWasReleased = true;
         }
 
-        // When the jump button is held down for at least the set time
+        // When the camera change button is held down for at least the set time
         if (context.phase == InputActionPhase.Performed)
         {
-            CameraChanged = true;
+            CameraChangeWasPressed = true;
+            CameraChangeWasReleased = false;
         }
     }
     public void OnPause(InputAction.CallbackContext context)

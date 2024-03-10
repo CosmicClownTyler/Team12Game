@@ -1,11 +1,19 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+
+[Serializable]
+public enum GamePlayers
+{
+    One = 0,
+    Two = 1,
+}
 
 public enum GameType
 {
-    One = 0,
+    Simple = 0,
     Basic = 1,
     Intermidiate = 2,
-    Full = 3
+    Full = 3,
 }
 
 public class GameTypeManager : MonoBehaviour

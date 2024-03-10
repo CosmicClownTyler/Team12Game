@@ -1,0 +1,195 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4310255245100540151
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4310255245100540148}
+  m_Layer: 0
+  m_Name: Booth
+  m_TagString: Environment
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4310255245100540148
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4310255245100540151}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -13.419484, y: -4.794223, z: 8.1273985}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 482355337266636906}
+  - {fileID: 3580780831656346694}
+  - {fileID: 7779571574750999296}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &4310255245374743866
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4310255245100540148}
+    m_Modifications:
+    - target: {fileID: 4422730343985565008, guid: 5e23ea2cd0dd847319722df0501a5b52,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4422730343985565008, guid: 5e23ea2cd0dd847319722df0501a5b52,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4422730343985565008, guid: 5e23ea2cd0dd847319722df0501a5b52,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4422730343985565008, guid: 5e23ea2cd0dd847319722df0501a5b52,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4422730343985565008, guid: 5e23ea2cd0dd847319722df0501a5b52,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4422730343985565008, guid: 5e23ea2cd0dd847319722df0501a5b52,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4422730343985565008, guid: 5e23ea2cd0dd847319722df0501a5b52,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4422730343985565008, guid: 5e23ea2cd0dd847319722df0501a5b52,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4422730343985565009, guid: 5e23ea2cd0dd847319722df0501a5b52,
+        type: 3}
+      propertyPath: m_Name
+      value: Skinny Bench Left
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5e23ea2cd0dd847319722df0501a5b52, type: 3}
+--- !u!4 &482355337266636906 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4422730343985565008, guid: 5e23ea2cd0dd847319722df0501a5b52,
+    type: 3}
+  m_PrefabInstance: {fileID: 4310255245374743866}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4310255245544259727
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4310255245100540148}
+    m_Modifications:
+    - target: {fileID: 747711333042586825, guid: de3e8266bfe814a158720613d766553c,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 747711333042586825, guid: de3e8266bfe814a158720613d766553c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 747711333042586825, guid: de3e8266bfe814a158720613d766553c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 747711333042586825, guid: de3e8266bfe814a158720613d766553c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3375908351722024248, guid: de3e8266bfe814a158720613d766553c,
+        type: 3}
+      propertyPath: m_Name
+      value: Table
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: de3e8266bfe814a158720613d766553c, type: 3}
+--- !u!4 &3580780831656346694 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 747711333042586825, guid: de3e8266bfe814a158720613d766553c,
+    type: 3}
+  m_PrefabInstance: {fileID: 4310255245544259727}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6239217153172291152
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4310255245100540148}
+    m_Modifications:
+    - target: {fileID: 4422730343985565008, guid: 5e23ea2cd0dd847319722df0501a5b52,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4422730343985565008, guid: 5e23ea2cd0dd847319722df0501a5b52,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4422730343985565008, guid: 5e23ea2cd0dd847319722df0501a5b52,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4422730343985565008, guid: 5e23ea2cd0dd847319722df0501a5b52,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4422730343985565008, guid: 5e23ea2cd0dd847319722df0501a5b52,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4422730343985565008, guid: 5e23ea2cd0dd847319722df0501a5b52,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4422730343985565008, guid: 5e23ea2cd0dd847319722df0501a5b52,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4422730343985565008, guid: 5e23ea2cd0dd847319722df0501a5b52,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4422730343985565009, guid: 5e23ea2cd0dd847319722df0501a5b52,
+        type: 3}
+      propertyPath: m_Name
+      value: Skinny Bench Right
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5e23ea2cd0dd847319722df0501a5b52, type: 3}
+--- !u!4 &7779571574750999296 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4422730343985565008, guid: 5e23ea2cd0dd847319722df0501a5b52,
+    type: 3}
+  m_PrefabInstance: {fileID: 6239217153172291152}
+  m_PrefabAsset: {fileID: 0}

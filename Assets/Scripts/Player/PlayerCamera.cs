@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerCamera : MonoBehaviour
 {
@@ -14,7 +13,9 @@ public class PlayerCamera : MonoBehaviour
 
     public Transform shootingLookAt;
 
-    private Vector2 input;
+    private Vector2 moveInput;
+    private bool shouldChangeCamera = false;
+    private bool canChangeCamera = true;
 
     public enum CameraStyle
     {
@@ -31,18 +32,35 @@ public class PlayerCamera : MonoBehaviour
 
     private void Update()
     {
-        input = InputManager.Instance.LookInput;
+        shouldChangeCamera = false;
+
+        if (InputManager.Instance.CameraChangeWasPressed)
+        {
+            shouldChangeCamera = true;
+        }
+        else if (InputManager.Instance.CameraChangeWasReleased)
+        {
+            canChangeCamera = true;
+        }
+
+        if (shouldChangeCamera && canChangeCamera)
+        {
+            ChangeCamera();
+            canChangeCamera = false;
+        }
 
         Vector3 viewDirection = playerObject.position - new Vector3(transform.position.x, playerObject.position.y, transform.position.z);
         orientation.forward = viewDirection.normalized;
 
         if (currentStyle == CameraStyle.Exploration)
         {
-            Vector3 inputDirection = orientation.forward * input.y + orientation.right * input.x;
+            Vector3 inputDirection = orientation.forward * moveInput.y + orientation.right * moveInput.x;
 
             // smoothen the movement
             if (inputDirection != Vector3.zero)
+            {
                 playerObject.forward = Vector3.Slerp(playerObject.forward, inputDirection.normalized, Time.deltaTime * rotationSpeed);
+            }
         }
         else if (currentStyle == CameraStyle.Shooting)
         {
@@ -51,19 +69,12 @@ public class PlayerCamera : MonoBehaviour
 
             playerObject.forward = directionToShootLookAt.normalized;
         }
-
     }
 
-    // input events (subscribed to in inspector)
-    public void OnCameraChange(InputAction.CallbackContext context)
+    private void ChangeCamera()
     {
         currentStyle = (currentStyle == CameraStyle.Exploration) ? CameraStyle.Shooting : CameraStyle.Exploration;
-        StartCoroutine(SendNotification(notificationText,"Camera style: " + currentStyle.ToString(), 3));
-    }
-    public void OnMove(InputAction.CallbackContext context)
-    {
-        // read move input
-        input = context.ReadValue<Vector2>();
+        StartCoroutine(SendNotification(notificationText, "Camera style: " + currentStyle.ToString(), 3));
     }
 
     private IEnumerator SendNotification(TextMeshProUGUI textHolder, string text, int timeout)

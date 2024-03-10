@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1287941258426972855}
   - component: {fileID: 84621349893453687}
   - component: {fileID: 1933000694042875372}
-  - component: {fileID: -6676636969496414299}
+  - component: {fileID: 1414095259665256212}
   m_Layer: 11
   m_Name: Pin
   m_TagString: Pin
@@ -110,7 +110,7 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
-  m_Height: 2.25
+  m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1933000694042875372
@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed27a6e1ad94d4e4d87b08237f91766a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-6676636969496414299
+--- !u!114 &1414095259665256212
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -134,7 +134,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4505909617502794238}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4f896ab16d1de746ab4fa2f6db316b2, type: 3}
+  m_Script: {fileID: 11500000, guid: 2843e78745e45264da20fc0a9bee2c20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   collisionSoundClip: {fileID: 8300000, guid: b84213ade56813044a818a1f77fb2bd0, type: 3}
