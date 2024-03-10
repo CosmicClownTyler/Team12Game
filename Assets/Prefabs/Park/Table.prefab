@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7813305625394113503}
   m_Layer: 0
   m_Name: Cylinder (1)
-  m_TagString: EnvironmentObject
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 4465552928130390312}
   m_Layer: 0
   m_Name: Cube (1)
-  m_TagString: EnvironmentObject
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -234,7 +234,7 @@ GameObject:
   - component: {fileID: 8978806812540120693}
   m_Layer: 0
   m_Name: Cylinder
-  m_TagString: EnvironmentObject
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2721715737724397360}
   m_Layer: 0
   m_Name: Cube (2)
-  m_TagString: EnvironmentObject
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 119712455786174794}
   m_Layer: 0
   m_Name: Cylinder (3)
-  m_TagString: EnvironmentObject
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -201,7 +201,7 @@ GameObject:
   - component: {fileID: 8193648157071156362}
   m_Layer: 0
   m_Name: Cylinder (4)
-  m_TagString: EnvironmentObject
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -295,7 +295,7 @@ GameObject:
   - component: {fileID: 6472235606303537291}
   m_Layer: 0
   m_Name: Cylinder (5)
-  m_TagString: EnvironmentObject
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -429,7 +429,7 @@ GameObject:
   - component: {fileID: 4422730344343958282}
   m_Layer: 0
   m_Name: Cube (6)
-  m_TagString: EnvironmentObject
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -522,7 +522,7 @@ GameObject:
   - component: {fileID: 4422730344354242341}
   m_Layer: 0
   m_Name: Cube (5)
-  m_TagString: EnvironmentObject
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -615,7 +615,7 @@ GameObject:
   - component: {fileID: 4422730344614815529}
   m_Layer: 0
   m_Name: Cube (3)
-  m_TagString: EnvironmentObject
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -708,7 +708,7 @@ GameObject:
   - component: {fileID: 4422730344932114910}
   m_Layer: 0
   m_Name: Cube (1)
-  m_TagString: EnvironmentObject
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -801,7 +801,7 @@ GameObject:
   - component: {fileID: 4422730345114958256}
   m_Layer: 0
   m_Name: Cube (4)
-  m_TagString: EnvironmentObject
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -894,7 +894,7 @@ GameObject:
   - component: {fileID: 6496255349793512120}
   m_Layer: 0
   m_Name: Cylinder (2)
-  m_TagString: EnvironmentObject
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
