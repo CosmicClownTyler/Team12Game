@@ -25,6 +25,12 @@ public class PlayerMovement : MonoBehaviour
     private bool jumping;
     private Rigidbody rb;
 
+    // Draw player height
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawLine(transform.position, transform.position - (transform.up * (playerHeight * 0.5f + 0.1f)));
+    }
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -40,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
         jumping = InputManager.Instance.JumpWasPressed;
 
         // ground check
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
+        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.1f, whatIsGround);
     }
 
     private void FixedUpdate()
