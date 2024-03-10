@@ -8,6 +8,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource musicSource;
     [SerializeField] private AudioSource effectsSource;
     [SerializeField] private AudioSource uiSource;
+    [SerializeField] private AudioClip defaultMusicClip;
 
     private void Awake()
     {
@@ -28,6 +29,24 @@ public class AudioManager : MonoBehaviour
     {
         uiSource.PlayOneShot(clip);
     }
+
+    private void Start()
+    {
+        PlayBackgroundMusic(defaultMusicClip, true); // Automatically start playing the default music clip
+    }
+
+    public void PlayBackgroundMusic(AudioClip clip, bool loop = true)
+    {
+        if (musicSource.isPlaying)
+        {
+            musicSource.Stop(); // Stop current music if any is playing
+        }
+        musicSource.clip = clip; // Set the new clip
+        musicSource.loop = loop; // Set looping based on parameter
+        musicSource.Play(); // Start playing the music
+    }
+
+
 
     // Set volume
     public void SetMasterVolume(float volume)
