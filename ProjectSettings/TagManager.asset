@@ -5,15 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - GameArea
-  - CityArea
-  - RuralArea
   - Environment
   - Bat
   - Pin
-  - EnvironmentObject
-  - GameContactAreaOutFront
-  - GameContactArea
-  - WalkingArea
   layers:
   - Default
   - TransparentFX
