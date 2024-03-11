@@ -15,7 +15,6 @@ MonoBehaviour:
   m_SupportedDevices:
   - Keyboard
   - Mouse
-  - Gamepad
   m_UpdateMode: 1
   m_CompensateForScreenOrientation: 1
   m_FilterNoiseOnCurrent: 0

@@ -7,6 +7,24 @@ public enum GamePlayers
     One = 0,
     Two = 1,
 }
+public enum PinGroups
+{
+    Cannon = 0,
+    Fork = 1,
+    Star= 2,
+    Arrow= 3,
+    Well = 4,
+    Crankshaft = 5,
+    Artillery = 6,
+    Racquet = 7,
+    MachineGun = 8,
+    Lobster = 9,
+    Watchmen = 10,
+    Sickle = 11,
+    ShootingGallery = 12,
+    Airplane = 13,
+    Letter = 14,
+}
 
 public enum GameType
 {

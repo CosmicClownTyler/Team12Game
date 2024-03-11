@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 
     private GameType gameType;
     private GamePlayers gamePlayers;
+    private PinGroups pinGroup;
 
     private GameObject gameAreaObject;
 
@@ -53,6 +54,10 @@ public class GameManager : MonoBehaviour
     public void SetGamePlayers(GamePlayers gamePlayers)
     {
         this.gamePlayers = gamePlayers;
+    }
+    public void SetPinGroup(PinGroups pinGroup)
+    {
+        this.pinGroup = pinGroup;
     }
 
     public void StartTutorial()
@@ -99,6 +104,7 @@ public class GameManager : MonoBehaviour
             NormalGame gameArea = gameAreaObject.GetComponent<NormalGame>();
             gameArea.selectedGameType = gameType;
             gameArea.selectedGamePlayers = gamePlayers;
+            gameArea.selectedPinGroup = pinGroup;
             gameArea.StartGame();
         }
     }

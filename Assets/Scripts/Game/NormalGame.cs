@@ -9,6 +9,7 @@ public class NormalGame : MonoBehaviour
     [Header("Game Settings")]
     public GameType selectedGameType = GameType.Simple;
     public GamePlayers selectedGamePlayers = GamePlayers.One;
+    public PinGroups selectedPinGroup = PinGroups.Cannon;
 
     [Header("Locations")]
     public Transform pinGroupSpawn;
@@ -49,8 +50,16 @@ public class NormalGame : MonoBehaviour
         areaPinCheckers = GetComponentsInChildren<AreaPinChecker>();
 
         // Get the list of pin group indices for the selected game type
-        pinGroupIndices = GameTypeManager.GetPinGroupList(selectedGameType);
-        currentPinGroupIndex = 0;
+        if (selectedGameType == GameType.Simple)
+        {
+            pinGroupIndices = GameTypeManager.GetPinGroupList(GameType.Full);
+            currentPinGroupIndex = (int)selectedPinGroup;
+        }
+        else
+        {
+            pinGroupIndices = GameTypeManager.GetPinGroupList(selectedGameType);
+            currentPinGroupIndex = 0;
+        }
 
         readyToStart = true;
     }

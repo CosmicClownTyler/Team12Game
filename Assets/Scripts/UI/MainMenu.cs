@@ -49,6 +49,10 @@ public class MainMenu : MonoBehaviour
     {
         GameManager.Instance.SetGamePlayers(gamePlayersComponent.GamePlayers);
     }
+    public void SetPinGroup(PinGroupComponent pinGroupComponent)
+    {
+        GameManager.Instance.SetPinGroup(pinGroupComponent.PinGroup);
+    }
 
     public void ShowExitModal()
     {
