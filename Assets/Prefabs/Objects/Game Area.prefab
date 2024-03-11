@@ -1300,7 +1300,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6347035729607604545}
-  - component: {fileID: 1302606459137160471}
+  - component: {fileID: 1023487088404151836}
   m_Layer: 0
   m_Name: Game Area
   m_TagString: GameArea
@@ -1326,7 +1326,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1302606459137160471
+--- !u!114 &1023487088404151836
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -54,9 +54,9 @@ public class Player : MonoBehaviour
         playerThrower.ResetCurrentThrowCount();
     }
 
-    public void SetCanThrow()
+    public void SetCanThrow(bool canThrow = true)
     {
-        playerThrower.SetCanThrow();
+        playerThrower.SetCanThrow(canThrow);
     }
     public bool GetCanThrow()
     {

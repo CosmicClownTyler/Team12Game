@@ -1,11 +1,11 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class GameArea : MonoBehaviour
+public class NormalGame : MonoBehaviour
 {
     [Header("Pin Group Prefabs")]
     public GameObject[] pinGroupPrefabArray;
-    
+
     [Header("Game Settings")]
     public GameType selectedGameType = GameType.Simple;
     public GamePlayers selectedGamePlayers = GamePlayers.One;
@@ -25,10 +25,14 @@ public class GameArea : MonoBehaviour
     private GameObject currentPinGroup;
     // A reference to the stop checker for the current pin group game object
     private PinGroupStopChecker currentPinGroupStopChecker;
+    // All of the area pin checkers for whether or not the game area contains pins
+    private AreaPinChecker[] areaPinCheckers;
     // Whether or not the pins have moved since the last check
     private bool havePinsMovedSinceLastCheck = false;
 
-    private AreaPinChecker[] areaPinCheckers;
+    // If the players are at the first area or the second area
+    private bool atSecondThrowingArea_FirstPlayer;
+    private bool atSecondThrowingArea_SecondPlayer;
 
     private bool readyToStart = false;
     private bool hasStarted = false;
@@ -157,23 +161,18 @@ public class GameArea : MonoBehaviour
     {
         PlayerManager.Instance.GetActivePlayer().playerObject.transform.position = firstThrowingArea.position;
         PlayerManager.Instance.GetActivePlayer().SetCanThrow();
+        atSecondThrowingArea_FirstPlayer = false;
     }
     private void MovePlayerToSecondThrowingArea()
     {
         PlayerManager.Instance.GetActivePlayer().playerObject.transform.position = secondThrowingArea.position;
         PlayerManager.Instance.GetActivePlayer().SetCanThrow();
+        atSecondThrowingArea_FirstPlayer = true;
     }
-    
-    // Throwing logic and statistics
-    private void AfterThrow(bool hit = true)
-    {
-        if (!hit)
-        {
-            ShowPlayerNotification("You missed! Try again. ", 7);
-            PlayerManager.Instance.GetActivePlayer().SetCanThrow();
-            return;
-        }
 
+    // Throwing logic and statistics
+    private void AfterThrow()
+    {
         // If there are no pins left, move to the next pin group (or end the game if there are none left)
         if (!ContainsPinsInAnyAreas())
         {
@@ -201,7 +200,7 @@ public class GameArea : MonoBehaviour
         else
         {
             // Move the player to the second throwing area if they've just completed their first throw
-            if (PlayerManager.Instance.GetActivePlayer().GetCurrentThrowCount() == 1)
+            if (!atSecondThrowingArea_FirstPlayer)
             {
                 ShowPlayerNotification("You knocked some gorodki from the gorod. Moving you closer!", 7);
                 MovePlayerToSecondThrowingArea();
@@ -233,7 +232,7 @@ public class GameArea : MonoBehaviour
     {
         PlayerManager.Instance.GetActivePlayer().playerUI.ShowTextOnScreen(text, timeout);
     }
-    
+
     // Return the name of the prefab without the sorting number (i.e. return "Cannon" for prefab "1 Cannon")
     private string GetPrefabName(GameObject prefab)
     {

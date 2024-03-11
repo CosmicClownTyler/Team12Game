@@ -11,7 +11,6 @@ public class GameManager : MonoBehaviour
     private GamePlayers gamePlayers;
 
     private GameObject gameAreaObject;
-    private GameArea gameArea;
 
     private void Awake()
     {
@@ -61,7 +60,7 @@ public class GameManager : MonoBehaviour
         LoadScene("Tutorial");
     }
 
-    
+
     public void LoadScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
@@ -73,12 +72,6 @@ public class GameManager : MonoBehaviour
 
     private void OnSceneLoad(Scene scene)
     {
-        if (scene.name == "Tutorial")
-        {
-
-            return;
-        }
-
         // If the new scene isn't the menu
         if (scene.name != "Menu")
         {
@@ -86,20 +79,27 @@ public class GameManager : MonoBehaviour
             PlayerManager.Instance.SetActivePlayers();
             InputManager.Instance.ResumeGameInput();
             PauseManager.Instance.Resume();
-            gameAreaObject = GameObject.FindWithTag("GameArea");
-            gameArea = gameAreaObject.GetComponent<GameArea>();
-            gameArea.selectedGameType = gameType;
-            gameArea.selectedGamePlayers = gamePlayers;
             LockCursor();
-            gameArea.StartGame();
+            gameAreaObject = GameObject.FindWithTag("GameArea");
         }
 
-        // If the new scene is the menu
-        if (scene.name == "Menu")
+        if (scene.name == "Tutorial")
+        {
+            TutorialGame tutorial = gameAreaObject.GetComponent<TutorialGame>();
+            tutorial.StartGame();
+        }
+        else if (scene.name == "Menu")
         {
             // todo: update main menu settings
             InputManager.Instance.PauseGameInput();
             UnlockCursor();
+        }
+        else
+        {
+            NormalGame gameArea = gameAreaObject.GetComponent<NormalGame>();
+            gameArea.selectedGameType = gameType;
+            gameArea.selectedGamePlayers = gamePlayers;
+            gameArea.StartGame();
         }
     }
 

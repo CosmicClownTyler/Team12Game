@@ -19,6 +19,8 @@ public class InputManager : MonoBehaviour
     public bool JumpWasPressed { get; private set; }
     public bool PausePressed { get; private set; }
     public bool ResumePressed { get; private set; }
+    public bool ContinueWasPressed { get; private set; }
+    public bool ContinueWasReleased { get; private set; }
 
     public bool ActiveGameInput { get; private set; }
 
@@ -131,6 +133,22 @@ public class InputManager : MonoBehaviour
         if (context.phase == InputActionPhase.Performed)
         {
             ResumePressed = true;
+        }
+    }
+    public void OnContinue(InputAction.CallbackContext context)
+    {
+        // When the continue button is released
+        if (context.phase == InputActionPhase.Canceled)
+        {
+            ContinueWasPressed = false;
+            ContinueWasReleased = true;
+        }
+
+        // When the continue button is held down for at least the set time
+        if (context.phase == InputActionPhase.Performed)
+        {
+            ContinueWasPressed = true;
+            ContinueWasReleased = false;
         }
     }
 }

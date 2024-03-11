@@ -10,11 +10,10 @@ public class PlayerThrower : MonoBehaviour
     public AudioClip throwSoundClip;
 
     [Header("Throwing Force")]
-    private float throwForce;
     public float throwForceMinLimit = 50;
     public float throwForceMaxLimit = 100;
-    [Range(5, 50)]
-    public int throwForceSlideSpeed = 15;
+    private float throwForce;
+    [Range(5, 50)] public int throwForceSlideSpeed = 15;
     private Transform aimingTransform;
 
     private bool startedThrow = false;
@@ -101,7 +100,7 @@ public class PlayerThrower : MonoBehaviour
         // Player should not be able to throw until the bat is deleted and all pins have stopped moving
         internalCanThrow = false;
         externalCanThrow = false;
-        
+
         // Increment the throw counts
         throwCountTotal++;
         throwCountCurrentPinGroup++;
@@ -139,9 +138,9 @@ public class PlayerThrower : MonoBehaviour
         return internalCanThrow && externalCanThrow;
     }
     // Sets the environment as ready for the player to throw
-    public void SetCanThrow()
+    public void SetCanThrow(bool canThrow = true)
     {
-        externalCanThrow = true;
+        externalCanThrow = canThrow;
     }
     // Whether or not the thrower is waiting on the bat or the pins to be able to throw again
     public bool WaitingOnBat()
@@ -159,7 +158,7 @@ public class PlayerThrower : MonoBehaviour
         throwing = false;
         ResetAfterThrow();
     }
-    
+
     public bool IsThrowing()
     {
         return throwing;

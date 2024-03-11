@@ -1,5 +1,4 @@
-﻿using System.Dynamic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class SettingsManager : MonoBehaviour
