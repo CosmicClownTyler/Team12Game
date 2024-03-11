@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce;
     public float jumpCooldown;
     public float airMultiplier;
-    private bool canJump;
+    private bool canJump = true;
 
     [HideInInspector] public float walkSpeed;
     [HideInInspector] public float sprintSpeed;
@@ -18,8 +18,8 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask whatIsGround;
     private bool grounded;
 
-    [Header("Orientation")]
-    public Transform orientation;
+    [Header("Camera")]
+    public Camera playerCamera;
 
     private Vector2 moveAmount;
     private bool jumping;
@@ -35,8 +35,6 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
-
-        canJump = true;
     }
 
     private void Update()
@@ -69,7 +67,8 @@ public class PlayerMovement : MonoBehaviour
     private void Move()
     {
         // calculate movement direction
-        Vector3 moveDirection = orientation.forward * moveAmount.y + orientation.right * moveAmount.x;
+        Vector3 moveDirection = playerCamera.transform.forward * moveAmount.y + playerCamera.transform.right * moveAmount.x;
+        moveDirection.y = 0;
 
         // on ground
         if (grounded)

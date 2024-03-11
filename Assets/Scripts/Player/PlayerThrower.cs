@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Runtime.CompilerServices;
+using UnityEngine;
 
 public class PlayerThrower : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class PlayerThrower : MonoBehaviour
     public float throwForceMaxLimit = 100;
     [Range(5, 50)]
     public int throwForceSlideSpeed = 15;
+    private Transform aimingTransform;
 
     private bool startedThrow = false;
     private bool throwing = false;
@@ -106,12 +108,12 @@ public class PlayerThrower : MonoBehaviour
 
         // Instantiate a new bat and add the force
         activeBat = Instantiate(batPrefab, transform.position, transform.rotation);
-        activeBat.transform.position += transform.forward;
+        activeBat.transform.position += aimingTransform.forward;
         activeBat.transform.Rotate(0.0f, 0.0f, 90.0f, Space.Self);
         Rigidbody rb = activeBat.GetComponent<Rigidbody>();
 
         rb.angularVelocity = Vector3.down * 10.0f;
-        rb.AddForce(transform.forward * throwForce, ForceMode.VelocityChange);
+        rb.AddForce(aimingTransform.forward * throwForce, ForceMode.VelocityChange);
         rb.AddTorque(Vector3.down * 10000.0f);
 
         AudioManager.Instance?.PlaySoundEffect(throwSoundClip);
@@ -126,6 +128,11 @@ public class PlayerThrower : MonoBehaviour
         throwForceDirectionUp = true;
     }
 
+    // Set the aiming direction
+    public void SetAimingDirection(Transform aim)
+    {
+        aimingTransform = aim;
+    }
     // Whether the player can throw the bat or not
     public bool CanThrow()
     {

@@ -5,13 +5,15 @@ public class Player : MonoBehaviour
     public GameObject playerObject;
     [HideInInspector] public PlayerMovement playerMovement;
     [HideInInspector] public PlayerThrower playerThrower;
-    public PlayerCamera playerCamera;
     public PlayerUI playerUI;
 
     private void Start()
     {
         playerMovement = playerObject.GetComponent<PlayerMovement>();
         playerThrower = playerObject.GetComponent<PlayerThrower>();
+        
+        // Disable the mesh renderer to avoid the capsule being seen in first person
+        playerObject.GetComponent<MeshRenderer>().enabled = false;
     }
 
     private void Update()
@@ -34,6 +36,9 @@ public class Player : MonoBehaviour
 
         // Tells the UI whether the player can throw or not
         playerUI.IsWaitingAfterThrow = !playerThrower.CanThrow();
+
+        // Update the aiming direction
+        playerThrower.SetAimingDirection(playerMovement.playerCamera.transform);
     }
 
     public int GetTotalThrowCount()

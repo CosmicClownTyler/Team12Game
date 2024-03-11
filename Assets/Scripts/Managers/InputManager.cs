@@ -7,6 +7,9 @@ public class InputManager : MonoBehaviour
     [HideInInspector]
     public PlayerInput PlayerInput;
 
+    // Look input action (to change sensitivity)
+    public InputActionReference lookInputAction;
+
     // Input values
     public Vector2 MoveInput { get; private set; }
     public Vector2 LookInput { get; private set; }
@@ -14,8 +17,6 @@ public class InputManager : MonoBehaviour
     public bool ThrowIsHeld { get; private set; }
     public bool ThrowWasReleased { get; private set; }
     public bool JumpWasPressed { get; private set; }
-    public bool CameraChangeWasPressed { get; private set; }
-    public bool CameraChangeWasReleased { get; private set; }
     public bool PausePressed { get; private set; }
     public bool ResumePressed { get; private set; }
 
@@ -37,11 +38,14 @@ public class InputManager : MonoBehaviour
         PlayerInput = GetComponent<PlayerInput>();
     }
 
-    private void Update()
+    // Changes the mouse input scale
+    public void SetSensitivity(float xValue, float yValue)
     {
-        
+        string processorString = "scaleVector2(x=" + xValue + ", y=" + yValue + ")";
+        lookInputAction.action.ApplyBindingOverride(new InputBinding { overrideProcessors = processorString });
     }
 
+    // Changing input maps when pausing/resuming
     public void PauseGameInput()
     {
         PlayerInput.SwitchCurrentActionMap("UI");
@@ -53,6 +57,7 @@ public class InputManager : MonoBehaviour
         ActiveGameInput = true;
     }
 
+    // Getting input
     public void OnMove(InputAction.CallbackContext context)
     {
         MoveInput = context.ReadValue<Vector2>();
@@ -98,22 +103,6 @@ public class InputManager : MonoBehaviour
         if (context.phase == InputActionPhase.Performed)
         {
             JumpWasPressed = true;
-        }
-    }
-    public void OnCameraChange(InputAction.CallbackContext context)
-    {
-        // When the camera change button is released
-        if (context.phase == InputActionPhase.Canceled)
-        {
-            CameraChangeWasPressed = false;
-            CameraChangeWasReleased = true;
-        }
-
-        // When the camera change button is held down for at least the set time
-        if (context.phase == InputActionPhase.Performed)
-        {
-            CameraChangeWasPressed = true;
-            CameraChangeWasReleased = false;
         }
     }
     public void OnPause(InputAction.CallbackContext context)
