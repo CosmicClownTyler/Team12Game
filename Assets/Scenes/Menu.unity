@@ -2773,7 +2773,7 @@ PrefabInstance:
     - target: {fileID: 6208764800734100062, guid: 456afd72ebcd71c439226f2801d3e1d2,
         type: 3}
       propertyPath: m_text
-      value: Full
+      value: Tournament
       objectReference: {fileID: 0}
     - target: {fileID: 6208764801347184504, guid: 456afd72ebcd71c439226f2801d3e1d2,
         type: 3}
@@ -2963,7 +2963,7 @@ PrefabInstance:
     - target: {fileID: 6208764801347184506, guid: 456afd72ebcd71c439226f2801d3e1d2,
         type: 3}
       propertyPath: m_Name
-      value: Full Button
+      value: Tournament Button
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 456afd72ebcd71c439226f2801d3e1d2, type: 3}
